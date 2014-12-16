@@ -1,0 +1,91 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?f0fnmd');
+	src:url('fonts/icomoon.eot?#iefixf0fnmd') format('embedded-opentype'),
+		url('fonts/icomoon.woff?f0fnmd') format('woff'),
+		url('fonts/icomoon.ttf?f0fnmd') format('truetype'),
+		url('fonts/icomoon.svg?f0fnmd#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home:before {
+	content: "\e600";
+}
+.icon-pencil:before {
+	content: "\e601";
+}
+.icon-image:before {
+	content: "\e602";
+}
+.icon-camera:before {
+	content: "\e603";
+}
+.icon-connection:before {
+	content: "\e604";
+}
+.icon-location:before {
+	content: "\e605";
+}
+.icon-menu:before {
+	content: "\e606";
+}
+.icon-link:before {
+	content: "\e607";
+}
+.icon-happy:before {
+	content: "\e608";
+}
+.icon-smiley:before {
+	content: "\e609";
+}
+.icon-tongue:before {
+	content: "\e60a";
+}
+.icon-sad:before {
+	content: "\e60b";
+}
+.icon-wink:before {
+	content: "\e60c";
+}
+.icon-grin:before {
+	content: "\e60d";
+}
+.icon-cool:before {
+	content: "\e60e";
+}
+.icon-angry:before {
+	content: "\e60f";
+}
+.icon-evil:before {
+	content: "\e610";
+}
+.icon-shocked:before {
+	content: "\e611";
+}
+.icon-confused:before {
+	content: "\e612";
+}
+.icon-neutral:before {
+	content: "\e613";
+}
+.icon-wondering:before {
+	content: "\e614";
+}
+.icon-notification:before {
+	content: "\e615";
+}

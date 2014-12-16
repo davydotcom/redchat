@@ -1,0 +1,39 @@
+.nav-wrapper {
+	padding:10px;
+	position:absolute;
+	z-index:100;
+	left:0;
+	top:0;
+	color:#eee;
+	height:100%;
+	width: 220px;
+	background:#333;
+	h3 {
+		font-weight:normal;
+		color:#eee;
+		line-height:18px;
+		font-size:16px;
+		text-align:center;
+	}
+	a, a:visited {
+		color:inherit;
+	}
+
+	.buddy-list {
+		list-style-type: none;
+		padding: 0 0;
+		margin: 18px 15px;
+		li {
+			line-height: 18px;
+		}
+	}
+}
+
+@media(max-width:760px) {
+	.nav-wrapper {
+		left:-220px;
+		&.expanded {
+			left:0px;
+		}
+	}
+}
