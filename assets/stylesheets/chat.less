@@ -1,0 +1,57 @@
+.chat-message {
+	padding: 5px;
+	&:nth-child(2n+1) {
+		background:#fafafa;
+	}
+	.sender {
+		font-weight:bold;
+		line-height:18px;
+		font-size:16px;
+		&.self-written {
+			color:blue;
+		}
+		.date-meta {
+			color:#999;
+			float:right;
+			font-weight:normal
+		}
+	}
+	.content {
+		line-height:18px;
+		font-size:16px;	
+	}
+
+
+}
+
+.chat-input-footer {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	// height:35px;
+	background:#ddd;
+	padding: 5px;
+	.chat-input-field {
+		background:#fff;
+		border: none;
+		font-size:14px;
+		line-height:18px;
+		// display:block;
+		// width:100%;
+		width: ~"-webkit-calc(100% - 75px)";
+		// float:left;
+		margin: 0 0;
+		padding:2px;
+	}
+	button {
+		float:right;
+		
+		border: none;
+		font-size:14px;
+		line-height:18px;
+		padding:2px;
+		width:75px;
+		margin: 0 0;
+	}
+}

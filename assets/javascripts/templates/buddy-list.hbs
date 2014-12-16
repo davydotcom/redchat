@@ -1,5 +1,11 @@
 <ul class="buddy-list">
 {{#each activeUsers}}
-	<li><a href='#' class="buddy-link" data-user="{{username}}">{{username}}</a></li>
+	{{#if active}}
+		<li class="active"><a href='#' class="buddy-link " data-user="{{username}}">{{username}}</a></li>
+	{{else}}
+		<li><a href='#' class="buddy-link " data-user="{{username}}">{{username}}</a></li>
+	{{/if}}
+	
+	
 {{/each}}
 </ul>

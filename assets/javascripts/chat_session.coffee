@@ -6,6 +6,8 @@ class @ChatSession
 
 	constructor: (@chatHandler, @recipient) ->
 		document.addEventListener "chat::message", @onMessageReceived
+		document.addEventListener "chatView::typingStarted::#{@recipient}", @onTypingStarted
+		document.addEventListener "chatView::typingStopped::#{@recipient}", @onTypingStopped
 
 	#Sends JSON Formatted Object to Recipient
 	sendMessage: (message) =>
@@ -25,8 +27,9 @@ class @ChatSession
 		if @_typingTimer
 			clearTimeout @_typingTimer
 			@_typingTimer = null
-		@isTyping = true
-		@sendMessage({typingState:true})
+		unless @isTyping
+			@isTyping = true
+			@sendMessage({typingState:true})
 		@_typingTimer = setTimeout @onTypingStopped, 5000
 
 	onTypingStopped: =>
@@ -35,19 +38,22 @@ class @ChatSession
 		@_typingTimer = null
 
 	setRecipientTypingState: (_typingState) =>
-		@isRecipientTyping = false
+		@isRecipientTyping = _typingState
+		event = new CustomEvent("chatSession::typingStateChanged::#{@recipient}",detail: _typingState)
+		document.dispatchEvent(event)
 
 	onMessageReceived: (evt) =>
 		message = evt.detail
-		if message.sender is @recipient
-			console.log "Received Message", message
-			if message.typingState isnt null
-				@setRecipientTypingState message.typingState
-			else
-				@setRecipientTypingState false
+		if message.sender is @recipient or message.recipient is @recipient
+			if message.sender is @recipient
+				if message.typingState isnt null
+					@setRecipientTypingState message.typingState
+				else
+					@setRecipientTypingState false
 
-			@messageBuffer.push(new ChatMessage(@recipient, message.text, message.sendDate, message.isSensitive))
-			@redrawMessages()
+			if message.text
+				chatMessage = new ChatMessage(message.sender, message.text, message.sendDate, message.isSensitive, message.sender != @recipient)
+				@messageBuffer.push(chatMessage)
+				event = new CustomEvent("chatSession::message::#{@recipient}",detail: chatMessage)
+				document.dispatchEvent(event)
 
-	redrawMessages: =>
-		console.log "TODO: Figure out how to call redraw methods"

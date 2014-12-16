@@ -1,0 +1,15 @@
+<div class="chat-message" data-id="{{id}}">
+	{{#if selfWritten}}
+		<div class="sender self-written">
+			{{sender}} <time class="date-meta">{{dateFormatted}}</time>
+		</div>
+	{{else}}
+		<div class="sender">
+			{{sender}} <time class="date-meta">{{dateFormatted}}</time>
+		</div>
+	{{/if}}
+	<div class="content">
+		{{text}}
+	</div>
+	
+</div>

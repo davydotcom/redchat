@@ -3,6 +3,7 @@ class ChatHandler
 	_socket: null
 	_whoami: null
 	chatSessions: {}
+	activeSession: null
 
 	constructor: (@username, @password) ->
 		console.log "Initializing Chat Handler for #{@username}"
@@ -12,11 +13,18 @@ class ChatHandler
 	connect: =>
 		@_stompClient.connect @username, @password, @onConnected
 	
-	createChatSession: (recipient) =>
+	findOrcreateChatSession: (recipient) =>
 		chatSession = @chatSessions[recipient]
 		unless chatSession
 			@chatSessions[recipient] = chatSession = new ChatSession(@, recipient)
 		chatSession
+
+	setActiveSession: (recipient) =>
+		chatSession = @findOrcreateChatSession(recipient)
+		if @activeSession isnt chatSession
+			@activeSession = chatSession
+			event = new CustomEvent('chat::activeSessionChanged', detail: @activeSession)
+			document.dispatchEvent event
 
 	onConnected: (frame) =>
 		@whoami = frame.headers['user-name']
@@ -26,9 +34,7 @@ class ChatHandler
 
 	onMessageReceived: (message) =>
 		messageBody = JSON.parse(message.body)
-		chatSession = @chatSessions[messageBody.sender]
-		unless chatSession
-			@chatSessions[messageBody.sender] = new ChatSession(@, messageBody.sender)
+		chatSession = @findOrcreateChatSession(messageBody.sender)
 		# We throw the message onto an event bus so multiple subscribers can fetch it if necessary
 		event = new CustomEvent('chat::message',detail: messageBody)
 		document.dispatchEvent event

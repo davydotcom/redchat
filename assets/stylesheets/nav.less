@@ -16,6 +16,7 @@
 		text-align:center;
 	}
 	a, a:visited {
+		// color: white;
 		color:inherit;
 	}
 
@@ -25,6 +26,11 @@
 		margin: 18px 15px;
 		li {
 			line-height: 18px;
+			&.active {
+				a, a:visited {
+					color:red !important;
+				}
+			}
 		}
 	}
 }
