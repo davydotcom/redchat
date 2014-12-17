@@ -39,8 +39,7 @@ class @ChatSession
 
 	setRecipientTypingState: (_typingState) =>
 		@isRecipientTyping = _typingState
-		event = new CustomEvent("chatSession::typingStateChanged::#{@recipient}",detail: _typingState)
-		document.dispatchEvent(event)
+		EventService.dispatchEvent "chatSession::typingStateChanged::#{@recipient}", _typingState
 
 	onMessageReceived: (evt) =>
 		message = evt.detail
@@ -54,6 +53,4 @@ class @ChatSession
 			if message.text
 				chatMessage = new ChatMessage(message.sender, message.text, message.sendDate, message.isSensitive, message.sender != @recipient)
 				@messageBuffer.push(chatMessage)
-				event = new CustomEvent("chatSession::message::#{@recipient}",detail: chatMessage)
-				document.dispatchEvent(event)
-
+				EventService.dispatchEvent "chatSession::message::#{@recipient}", chatMessage

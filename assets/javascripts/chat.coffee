@@ -23,21 +23,18 @@ class ChatHandler
 		chatSession = @findOrcreateChatSession(recipient)
 		if @activeSession isnt chatSession
 			@activeSession = chatSession
-			event = new CustomEvent('chat::activeSessionChanged', detail: @activeSession)
-			document.dispatchEvent event
+			EventService.dispatchEvent 'chat::activeSessionChanged', @activeSession
 
 	onConnected: (frame) =>
 		@whoami = frame.headers['user-name']
-		event = new CustomEvent('sockConnected',{detail: @})
 		@_stompClient.subscribe '/user/queue/messages', @onMessageReceived
-		document.dispatchEvent event
+		EventService.dispatchEvent 'sockConnected', @
 
 	onMessageReceived: (message) =>
 		messageBody = JSON.parse(message.body)
 		chatSession = @findOrcreateChatSession(messageBody.sender)
 		# We throw the message onto an event bus so multiple subscribers can fetch it if necessary
-		event = new CustomEvent('chat::message',detail: messageBody)
-		document.dispatchEvent event
+		EventService.dispatchEvent 'chat::message', messageBody
 
 @ChatHandler = new ChatHandler(window.username,'pass') 
 
