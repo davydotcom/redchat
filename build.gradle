@@ -50,6 +50,7 @@ dependencies {
     compile 'com.bertramlabs.plugins:handlebars-asset-pipeline:2.0.13'
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-amqp")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-websocket")
@@ -57,6 +58,7 @@ dependencies {
     compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity3"
     compile("javax.inject:javax.inject:1")
     compile("org.codehaus.groovy:groovy")
+    compile "mysql:mysql-connector-java"
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
