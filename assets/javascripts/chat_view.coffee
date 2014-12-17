@@ -23,6 +23,7 @@ class ChatView
 	resetView: () ->
 		# Used to transition state , clears DOM
 		@chatContainer.innerHTML = ''
+
 		@inputField.value = ''
 		@inputField.focus()
 
@@ -55,7 +56,6 @@ class ChatView
 		console.log ("Bindings Initialized")
 
 	onMessageReceived: (evt) =>
-		console.log("Received Chat Message #{evt.detail}")
 		message = evt.detail
 		@chatContainer.innerHTML += message.render()
 		@chatScrollContainer.scrollTop = @chatScrollContainer.scrollHeight;
@@ -66,7 +66,6 @@ class ChatView
 		session = @session
 		for message in session.messageBuffer
 			@chatContainer.innerHTML += message.render()
-		# TODO: Scroll to bottom
 		@chatScrollContainer.scrollTop = @chatScrollContainer.scrollHeight;
 
 

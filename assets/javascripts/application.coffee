@@ -11,5 +11,5 @@ setInterval(->
 	# document.body.style.height=200;
 	document.body.style.height = "#{window.innerHeight}px";
 	window.scrollTo(0, 0);
-, 0)
+, 150)
 
