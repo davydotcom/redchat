@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("com.bertramlabs.plugins:asset-pipeline-gradle:2.0.19")
+        classpath("com.bertramlabs.plugins:asset-pipeline-gradle:2.3.6")
         classpath("com.bertramlabs.plugins:coffee-asset-pipeline:2.0.6")
         classpath("com.bertramlabs.plugins:less-asset-pipeline:2.0.8")
         classpath('com.bertramlabs.plugins:handlebars-asset-pipeline:2.0.13')
@@ -44,7 +44,7 @@ repositories {
 
 dependencies {
 
-    compile("com.bertramlabs.plugins:asset-pipeline-spring-boot:2.0.19")
+    compile("com.bertramlabs.plugins:asset-pipeline-spring-boot:2.3.6")
     compile("com.bertramlabs.plugins:coffee-asset-pipeline:2.0.6")
     compile("com.bertramlabs.plugins:less-asset-pipeline:2.0.8")
     compile 'com.bertramlabs.plugins:handlebars-asset-pipeline:2.0.13'
